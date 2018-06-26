@@ -1,0 +1,42 @@
+0 基本原则
+物理机
+    selinux  必须禁用
+    firewalld   必须停止
+    systemctl  stop  firewalld
+    systemctl  mask  firewalld
+    NetworkManager  -- 不管
+虚拟机模板
+    selinux     必须禁用
+    firewalld   必须卸载
+    NetworkManager  必须卸载
+ifcfg-eth0  配置文件
+DEVICE="eth0"
+ONBOOT="yes"
+IPV6INIT="no"
+TYPE="Ethernet"
+BOOTPROTO="dhcp"
+
+
+
+创建虚拟机 node1
+1、创建虚拟机配置文件
+     拷贝模板到 node1.xml ，修改  name 字段，修改 磁盘文件
+2、创建虚拟机磁盘文件
+cd /var/lib/libvirt/images
+qemu-img create -b node.qcow2 -f qcow2 node1.img
+
+3、启动虚拟机并测试
+cd /etc/libvirt/qemu
+virsh define node1.xml
+virsh start node1
+virsh console node1
+
+4、 远程连接
+virsh -c qemu+ssh://root@172.40.53.67/system
+virt-manager 
+
+
+
+
+
+
