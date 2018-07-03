@@ -1,0 +1,11 @@
+Linux 常见的系统日志文件都有哪些，各自的用途是什么？
+
+/var/log/messages 内核及公共消息日志
+
+/var/log/cron 计划任务日志
+
+/var/log/dmesg 系统引导日志
+
+/var/log/maillog 邮件系统日志
+
+/var/log/secure 记录与访问限制相关日志
